@@ -1,0 +1,36 @@
+{
+  "name": "tech-services-platform",
+  "version": "1.0.0",
+  "description": "A platform for selling web apps, mobile apps, and tech services",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd backend && npm run start:dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build": "npm run build:backend && npm run build:frontend",
+    "build:backend": "cd backend && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "start": "cd backend && npm run start",
+    "setup:env": "node scripts/setup-env.js",
+    "lint": "cd backend && npm run lint && cd ../frontend && npm run lint",
+    "test": "cd backend && npm run test",
+    "clean": "rimraf backend/dist frontend/.next node_modules",
+    "security:check": "npm audit && cd backend && npm audit && cd ../frontend && npm audit"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0",
+    "rimraf": "^5.0.0"
+  },
+  "dependencies": {
+    "cross-env": "^7.0.3"
+  },
+  "keywords": [
+    "nextjs",
+    "nestjs",
+    "typescript",
+    "postgresql",
+    "authentication",
+    "jwt"
+  ],
+  "author": "Tech Solutions Team",
+  "license": "MIT"
+}

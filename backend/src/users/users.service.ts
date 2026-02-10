@@ -13,6 +13,9 @@ export class UsersService {
 
   async create(userData: Partial<User>): Promise<User> {
     const saltRounds = 10;
+    if (!userData.password) {
+      throw new Error('Password is required');
+    }
     const hashedPassword = await bcrypt.hash(userData.password, saltRounds);
     
     const user = this.usersRepository.create({
@@ -23,11 +26,11 @@ export class UsersService {
     return await this.usersRepository.save(user);
   }
 
-  async findOneByEmail(email: string): Promise<User | undefined> {
+  async findOneByEmail(email: string): Promise<User | null> {
     return await this.usersRepository.findOne({ where: { email } });
   }
 
-  async findOneById(id: string): Promise<User | undefined> {
+  async findOneById(id: string): Promise<User | null> {
     return await this.usersRepository.findOne({ where: { id } });
   }
 
